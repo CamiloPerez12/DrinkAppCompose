@@ -1,8 +1,8 @@
-package com.jcpd.drinkapp.ui.login
+package com.jcpd.drinkapp.ui.register
 
 import com.google.firebase.auth.FirebaseUser
 
-data class LoginScreenState(
+data class RegisterScreenState (
     val loading : Boolean = false,
     val access : Boolean? = null,
     val idle : Boolean? = null,
@@ -11,4 +11,3 @@ data class LoginScreenState(
     val user : FirebaseUser? = null,
     val error : String? = null
 )
-

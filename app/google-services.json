@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "210261965312",
-    "project_id": "drinkapp-2afcd",
-    "storage_bucket": "drinkapp-2afcd.firebasestorage.app"
+    "project_number": "318846164545",
+    "project_id": "drinkapp-9a5c0",
+    "storage_bucket": "drinkapp-9a5c0.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:210261965312:android:ae3a99e66e85f89b25b6e5",
+        "mobilesdk_app_id": "1:318846164545:android:f3c368e5223cba4a37b0c0",
         "android_client_info": {
           "package_name": "com.jcpd.drinkapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAjqrOgnuoGe8AqaSZ255XlVPDBrOjtPx8"
+          "current_key": "AIzaSyCh5rCrTOm3hQqjEgSzE4UwHWUDpSm3oWU"
         }
       ],
       "services": {

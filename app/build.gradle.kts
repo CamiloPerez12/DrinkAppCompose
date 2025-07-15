@@ -61,8 +61,24 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    // Hilt integration
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
+    // Firebase integration
     implementation(libs.firebase.bom)
+    // Jetpack Compose integration
+    implementation(libs.androidx.navigation.compose)
+    // Views/Fragments integration
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    // Feature module support for Fragments
+    implementation(libs.androidx.navigation.dynamic.features.fragment)
+    // Testing Navigation
+    androidTestImplementation(libs.androidx.navigation.testing)
+    // JSON serialization library, works with the Kotlin serialization plugin
+    implementation(libs.kotlinx.serialization.json)
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }

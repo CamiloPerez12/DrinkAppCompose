@@ -11,4 +11,4 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val BgLoginColor = Color(0xFF2C1B3A)
-val OrangeButton = Color(0xFFF67D3A)
+val OrangeMain = Color(0xFFF67D3A)

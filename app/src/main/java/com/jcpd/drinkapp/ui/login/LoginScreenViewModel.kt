@@ -1,9 +1,6 @@
 package com.jcpd.drinkapp.ui.login
 
 import android.util.Log
-import androidx.compose.foundation.interaction.HoverInteraction
-import androidx.compose.runtime.MutableState
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
@@ -23,7 +20,7 @@ class LoginScreenViewModel @Inject constructor() : ViewModel() {
 
     private val auth: FirebaseAuth = Firebase.auth
 
-    fun signInWithEmailAndPassword(email: String, password: String) =
+    fun signInWithEmailAndPassword(email: String, password: String) {
         viewModelScope.launch {
             _state.update { state -> state.copy(loading = true) }
             try {
@@ -37,8 +34,14 @@ class LoginScreenViewModel @Inject constructor() : ViewModel() {
                 }
             } catch (ex: Exception) {
                 Log.d("DrinkAppUser", "Algo pasó: ${ex.message}")
-                _state.update { state->state.copy(loading= false, access = false) }
+                _state.update { state -> state.copy(loading = false, access = false) }
             }
         }
+    }
 }
+
+
+
+
+
 
