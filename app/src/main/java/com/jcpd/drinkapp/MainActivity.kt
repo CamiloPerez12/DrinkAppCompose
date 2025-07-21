@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -18,6 +19,7 @@ import com.jcpd.drinkapp.navigation.RegisterScreenRoute
 import com.jcpd.drinkapp.ui.homeScreen.HomeScreen
 import com.jcpd.drinkapp.ui.login.LoginScreen
 import com.jcpd.drinkapp.ui.register.RegisterScreen
+import com.jcpd.drinkapp.ui.theme.BgLoginColor
 import com.jcpd.drinkapp.ui.theme.DrinkAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,7 +44,7 @@ fun AppNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = LoginScreenRoute.route // The first screen to show
+        startDestination = HomeScreenRoute.route // The first screen to show
     ) {
         composable(LoginScreenRoute.route) {
             LoginScreen(
@@ -67,7 +69,9 @@ fun AppNavigation() {
             )
         }
         composable(HomeScreenRoute.route) {
-            HomeScreen()
+            HomeScreen(
+                modifier = Modifier.background(BgLoginColor)
+            )
         }
         composable(RegisterScreenRoute.route) {
             RegisterScreen(

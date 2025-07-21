@@ -1,18 +1,12 @@
 package com.jcpd.drinkapp.ui.homeScreen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,24 +16,27 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jcpd.drinkapp.R
+import com.jcpd.drinkapp.navigation.GetNavigationBar
 import com.jcpd.drinkapp.ui.theme.BgLoginColor
-import com.jcpd.drinkapp.ui.theme.OrangeMain
+import androidx.compose.runtime.getValue
+import coil3.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeScreenViewModel = hiltViewModel()) {
+    val uiState by viewModel.state.collectAsStateWithLifecycle()
     Scaffold(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
-            .background(BgLoginColor)
-            .padding(horizontal = 24.dp),
+            .background(BgLoginColor),
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -59,62 +56,74 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                     }
                 },
             )
+        },
+        bottomBar = {
+            GetNavigationBar()
         }
     ) { innerPadding ->
-        Box(
+        LazyColumn (
             modifier = modifier
-                .verticalScroll(rememberScrollState())
-                .padding(vertical = 12.dp)
+                .padding(innerPadding)
                 .background(BgLoginColor),
-            contentAlignment = Alignment.Center,
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(24.dp),
-            ) {
+            item {
                 Text(text = "Cocktail of the Day", color = Color.Yellow, fontSize = 18.sp)
-                Image(
-                    painter = painterResource(id = R.drawable.drink_app_logo),
-                    contentDescription = "Cocktail of the Day"
+                AsyncImage(
+                    model = uiState.data?.listDrink[0]?.strDrinkThumb,
+                    contentDescription = uiState.data?.listDrink[0]?.strDrink,
                 )
                 Text(text = "Coctail Name", color = Color.Yellow, fontSize = 18.sp)
-                Column(
+                LazyRow(
                     modifier = modifier
                         .fillMaxSize()
                         .background(BgLoginColor)
-                        .padding(horizontal = 24.dp)
-                        .horizontalScroll(rememberScrollState())
+                        .padding(vertical = 24.dp)
                 ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(24.dp)
-                    ) {
-                        Card {
-                            Image(
-                                painter = painterResource(id = R.drawable.coctail_svgrepo_com),
-                                contentDescription = "Cocktail n"
+                    item {
+                        Card(
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = 6.dp
+                            ),
+                            colors = CardDefaults.cardColors(
+                                containerColor = Color.White
+                            )
+                        ) {
+                            AsyncImage(
+                                model = uiState.data?.listDrink[0]?.strDrinkThumb,
+                                contentDescription = uiState.data?.listDrink[0]?.strDrink,
                             )
                         }
                     }
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(24.dp)
-                    ) {
-                        Card {
-                            Image(
-                                painter = painterResource(id = R.drawable.coctail_svgrepo_com),
-                                contentDescription = "Cocktail n"
+                    item {
+                        Card(
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = 6.dp
+                            ),
+                            colors = CardDefaults.cardColors(
+                                containerColor = Color.White
+                            )
+                        ) {
+                            AsyncImage(
+                                model = uiState.data?.listDrink[0]?.strDrinkThumb,
+                                contentDescription = uiState.data?.listDrink[0]?.strDrink,
                             )
                         }
                     }
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(24.dp)
-                    ) {
-                        Card {
-                            Image(
-                                painter = painterResource(id = R.drawable.coctail_svgrepo_com),
-                                contentDescription = "Cocktail n"
+                    item {
+                        Card(
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = 6.dp
+                            ),
+                            colors = CardDefaults.cardColors(
+                                containerColor = Color.White
+                            )
+                        ) {
+                            AsyncImage(
+                                model = uiState.data?.listDrink[0]?.strDrinkThumb,
+                                contentDescription = uiState.data?.listDrink[0]?.strDrink,
                             )
                         }
                     }
@@ -122,4 +131,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             }
         }
     }
+}
+
+private fun observeState() {
+
 }

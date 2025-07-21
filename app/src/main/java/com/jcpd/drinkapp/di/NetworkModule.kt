@@ -16,6 +16,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
+    @Named("BaseUrl")
     fun provideBaseUrl(): String = "https://www.thecocktaildb.com/api/json/v1/1/"
 
     @Singleton
