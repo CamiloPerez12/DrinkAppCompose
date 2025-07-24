@@ -1,6 +1,6 @@
 package com.jcpd.drinkapp.ui.homeScreen
 
-import com.jcpd.drinkapp.data.models.ListCocktailModel
+import com.jcpd.data.models.ListCocktailModel
 
 data class HomeScreenState (
     val loading: Boolean = false,

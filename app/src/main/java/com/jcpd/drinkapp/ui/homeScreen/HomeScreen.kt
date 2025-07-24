@@ -28,6 +28,7 @@ import com.jcpd.drinkapp.navigation.GetNavigationBar
 import com.jcpd.drinkapp.ui.theme.BgLoginColor
 import androidx.compose.runtime.getValue
 import coil3.compose.AsyncImage
+import com.jcpd.features.composables.DACard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -127,12 +128,11 @@ fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeScreenViewModel = h
                             )
                         }
                     }
+                    item {
+                        DACard(text = "DACard")
+                    }
                 }
             }
         }
     }
-}
-
-private fun observeState() {
-
 }
