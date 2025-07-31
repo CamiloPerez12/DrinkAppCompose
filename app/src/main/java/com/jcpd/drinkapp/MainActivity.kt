@@ -16,11 +16,11 @@ import androidx.navigation.compose.rememberNavController
 import com.jcpd.drinkapp.navigation.HomeScreenRoute
 import com.jcpd.drinkapp.navigation.LoginScreenRoute
 import com.jcpd.drinkapp.navigation.RegisterScreenRoute
-import com.jcpd.drinkapp.ui.homeScreen.HomeScreen
-import com.jcpd.drinkapp.ui.login.LoginScreen
-import com.jcpd.drinkapp.ui.register.RegisterScreen
+import com.jcpd.registerscreen.register.RegisterScreen
 import com.jcpd.drinkapp.ui.theme.BgLoginColor
 import com.jcpd.drinkapp.ui.theme.DrinkAppTheme
+import com.jcpd.home.homeScreen.HomeScreen
+import com.jcpd.loginscreen.login.LoginScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -70,7 +70,8 @@ fun AppNavigation() {
         }
         composable(HomeScreenRoute.route) {
             HomeScreen(
-                modifier = Modifier.background(BgLoginColor)
+                modifier = Modifier.background(BgLoginColor),
+                navController = navController
             )
         }
         composable(RegisterScreenRoute.route) {
