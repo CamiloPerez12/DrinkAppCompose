@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":features"))
     implementation(project(":designSystem"))
     implementation(project(":common:resources:drawable"))
+    api(project(":core:protodatastore"))
     api(project(":data"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -81,4 +82,7 @@ dependencies {
     //Coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    // Proto DataStore
+    implementation(libs.androidx.datastore)
+    implementation(libs.protobuf.kotlin.lite)
 }
