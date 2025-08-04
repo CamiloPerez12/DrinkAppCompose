@@ -24,8 +24,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
+import com.jcpd.designsystem.components.TestCounter
 import com.jcpd.features.composables.DACard
 import com.jcpd.home.R
 import com.jcpd.home.homeScreen.navigation.GetNavigationBar
@@ -35,6 +38,7 @@ const val HOME_ROUTE = "home_route"
 @Composable
 fun HomeScreen(navController: NavController, modifier: Modifier = Modifier, viewModel: HomeScreenViewModel = hiltViewModel()) {
     val uiState by viewModel.state.collectAsStateWithLifecycle()
+    val preferencesState by viewModel.counterState.collectAsStateWithLifecycle()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -68,6 +72,14 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier, view
                 .padding(innerPadding)
                 .background(Color.White),
         ) {
+            item {
+                TestCounter(
+                    value = preferencesState ?: 0,
+                    updateValue = {
+                        viewModel.updateCounterValue(it)
+                    }
+                )
+            }
             item {
                 Text(text = "Cocktail of the Day", color = Color.Yellow, fontSize = 18.sp)
                 AsyncImage(
@@ -136,4 +148,10 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier, view
             }
         }
     }
+}
+
+@Composable
+@Preview
+fun HomeScreenPreview() {
+    HomeScreen(navController = NavController(LocalContext.current))
 }
