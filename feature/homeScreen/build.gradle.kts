@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":features"))
     implementation(project(":designSystem"))
     implementation(project(":common:resources:drawable"))
+    implementation(project(":core:datastore"))
     api(project(":data"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
