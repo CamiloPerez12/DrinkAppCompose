@@ -1,12 +1,15 @@
 package com.jcpd.home.homeScreen
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,17 +27,25 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
+import com.jcpd.designsystem.components.TestCounter
 import com.jcpd.features.composables.DACard
 import com.jcpd.home.R
 import com.jcpd.home.homeScreen.navigation.GetNavigationBar
 
 const val HOME_ROUTE = "home_route"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController, modifier: Modifier = Modifier, viewModel: HomeScreenViewModel = hiltViewModel()) {
+fun HomeScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: HomeScreenViewModel = hiltViewModel()
+) {
     val uiState by viewModel.state.collectAsStateWithLifecycle()
+    val protoState by viewModel.preferencesStateFlow.collectAsStateWithLifecycle()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -63,11 +74,36 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier, view
             GetNavigationBar()
         }
     ) { innerPadding ->
-        LazyColumn (
+        LazyColumn(
             modifier = modifier
                 .padding(innerPadding)
                 .background(Color.White),
         ) {
+            item {
+                Row(
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = "Hi ${protoState?.name}",
+                        fontSize = 24.sp,
+                        color = Color.Black
+                    )
+                    Checkbox(
+                        checked = protoState?.counterFlag == true,
+                        onCheckedChange = {
+                            viewModel.toggleCounter()
+                        },
+                    )
+                }
+                AnimatedVisibility(protoState?.counterFlag == true) {
+                    TestCounter(
+                        value = protoState?.counter ?: 0,
+                        updateValue = {
+                            viewModel.updateCounterValue(it)
+                        }
+                    )
+                }
+            }
             item {
                 Text(text = "Cocktail of the Day", color = Color.Yellow, fontSize = 18.sp)
                 AsyncImage(
