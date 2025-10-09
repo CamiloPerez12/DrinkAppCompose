@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":features"))
     implementation(project(":designSystem"))
     implementation(project(":common:resources:drawable"))
+    implementation(project(":core:security"))
     api(project(":core:protodatastore"))
     api(project(":data"))
     testImplementation(libs.junit)

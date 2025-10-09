@@ -6,4 +6,5 @@ data class HomeScreenState (
     val loading: Boolean = false,
     val error: String? = null,
     val data: ListCocktailModel? = null,
+    val decodedCocktail: String? = null
 )
