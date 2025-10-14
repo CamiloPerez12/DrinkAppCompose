@@ -22,6 +22,7 @@ import com.jcpd.drinkapp.ui.theme.DrinkAppTheme
 import com.jcpd.home.homeScreen.HomeScreen
 import com.jcpd.loginscreen.login.LoginScreen
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -44,7 +45,7 @@ fun AppNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = HomeScreenRoute.route // The first screen to show
+        startDestination = LoginScreenRoute.route // The first screen to show
     ) {
         composable(LoginScreenRoute.route) {
             LoginScreen(
@@ -64,8 +65,7 @@ fun AppNavigation() {
                         }
                         launchSingleTop = true
                     }
-                },
-                viewModel = viewModel(),
+                }
             )
         }
         composable(HomeScreenRoute.route) {

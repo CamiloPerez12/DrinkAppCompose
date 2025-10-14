@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -38,6 +40,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jcpd.designsystem.theme.BgLoginColor
@@ -79,6 +82,8 @@ fun LoginScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     var validate : Boolean? by remember { mutableStateOf(null)}
 
+    val scrollState = rememberScrollState()
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -87,9 +92,19 @@ fun LoginScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
+            modifier = Modifier.verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
+            Text(
+                text = state.decodedCocktail ?: "",
+                color = Color.Black,
+                fontSize = 18.sp,
+                modifier = Modifier.padding(24.dp)
+            )
+            Button(onClick = { onLoginSuccess.invoke() }) {
+                Text("Show cocktail list")
+            }
             Image(
                 painter = painterResource(id = R.drawable.drink_app_logo),
                 contentDescription = "Drinks App Logo",

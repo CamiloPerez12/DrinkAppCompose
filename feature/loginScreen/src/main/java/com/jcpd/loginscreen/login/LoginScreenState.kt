@@ -9,6 +9,7 @@ data class LoginScreenState(
     val valid : Boolean? = null,
     val userCreated : Boolean? = null,
     val user : FirebaseUser? = null,
-    val error : String? = null
+    val error : String? = null,
+    val decodedCocktail: String? = null
 )
 

@@ -49,6 +49,8 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation(project(":designSystem"))
     implementation(project(":common:resources:drawable"))
+    implementation(project(":core:security"))
+    api(project(":data"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -79,4 +81,7 @@ dependencies {
     //Coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    // Proto DataStore
+    implementation(libs.androidx.datastore)
+    implementation(libs.protobuf.kotlin.lite)
 }

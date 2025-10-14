@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
@@ -34,6 +35,7 @@ import com.jcpd.designsystem.components.TestCounter
 import com.jcpd.features.composables.DACard
 import com.jcpd.home.R
 import com.jcpd.home.homeScreen.navigation.GetNavigationBar
+import java.io.File
 
 const val HOME_ROUTE = "home_route"
 
@@ -103,6 +105,16 @@ fun HomeScreen(
                         }
                     )
                 }
+            }
+            item {
+                Button(onClick = { viewModel.getDecodedCocktail() }) {
+                    Text("Show saved cocktail")
+                }
+                Text(
+                    text = uiState.decodedCocktail ?: "",
+                    color = Color.Black,
+                    fontSize = 18.sp
+                )
             }
             item {
                 Text(text = "Cocktail of the Day", color = Color.Yellow, fontSize = 18.sp)
